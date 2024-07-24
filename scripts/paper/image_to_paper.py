@@ -1,5 +1,5 @@
 # made by slarticodefast
-# Version 1.0
+# Version 1.01
 # run this script using
 # python image_to_paper.py plushie_spacelizard.png
 # if you don't want to cut off transparent borders use
@@ -25,6 +25,8 @@ if not (len(sys.argv)>1 and sys.argv[1]=="false"):
     y0,x0 = coords.min(axis=0)
     y1,x1 = coords.max(axis=0) + 1  # slices are exclusive at the top
     img_data = img_data[y0:y1, x0:x1]
+
+img_data[img_data[:,:,3]==0]=np.array((255,255,255,0)) # set all transparent pixels to white so char_transparent is colored correctly
 
 text=''
 preview=''
